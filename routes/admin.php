@@ -49,4 +49,6 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/sales/print/{sale}', [SalesManagementController::class, 'print'])->name('admin.sales.print');
     Route::get('/sales/pdf/{sale}', [SalesManagementController::class, 'pdf'])->name('admin.sales.pdf');
     Route::get('/sales/filter', [SalesManagementController::class, 'filter'])->name('admin.sales.filter');
+    Route::get('/sales/summary', [SalesManagementController::class, 'summary'])->name('admin.sales.summary');
+
 });

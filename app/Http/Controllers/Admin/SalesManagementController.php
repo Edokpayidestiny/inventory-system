@@ -114,6 +114,15 @@ class SalesManagementController extends Controller
         ]);
     }
 
+    public function summary()
+    {
+        $data = [
+            'tile' => 'Sales Summary',
+            'sales' => Sale::with(['user', 'saleItems'])->get(),
+        ];
+
+        return view('admin.sales.sales-summary', $data);
+    }
     /**
      * Show the form for editing the specified resource.
      */

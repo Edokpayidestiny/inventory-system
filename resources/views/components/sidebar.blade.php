@@ -39,8 +39,8 @@
                         @elseif (Auth()->user()->role === 'admin')
                             <li><a href="{{ route('admin.sales.history') }}">Sales History</a></li>
                             <li><a href="{{ route('admin.sales.index') }}">POS</a></li>
-                            <li><a href="pos.html">New Sales</a></li>
-                            <li><a href="salesreturnlists.html">Sales Report</a></li>
+                            <li><a href="{{ route('admin.sales.index') }}">New Sales</a></li>
+                            <li><a href="{{ route('admin.sales.summary') }}">Sales Report</a></li>
                         @endif
                     </ul>
                 </li>

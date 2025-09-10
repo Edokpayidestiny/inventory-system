@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
     @livewireStyles
 
 </head>
@@ -40,6 +41,8 @@
         {{ $slot }}
     </div>
     @livewireScripts
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
