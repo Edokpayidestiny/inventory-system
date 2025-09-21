@@ -17,7 +17,9 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->string('name');
             $table->string('brand')->nullable();
-            $table->string('price');
+            $table->decimal('price', 15, 2)->default(0); // selling price
+            $table->decimal('cost_price', 15, 2)->default('0');
+            $table->decimal('markup_percent',5, 2)->default('0');
             $table->string('unit')->nullable();
             $table->string('qty')->default('0');
             $table->string('image')->nullable();

@@ -80,9 +80,9 @@
 
                             <div class="col-lg-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Price</label>
-                                    <input type="text" class="form-control" name="price" placeholder="Enter Price" value="{{ old('price', $product->price) }}">
-                                    <x-form-error name="price" />
+                                    <label>Markup Percent</label>
+                                    <input type="text" class="form-control" name="markup_percent" placeholder="Enter Markup Percent" value="{{ old('markup_percent', $product->markup_percent) }}">
+                                    <x-form-error name="markup_percent" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-12">

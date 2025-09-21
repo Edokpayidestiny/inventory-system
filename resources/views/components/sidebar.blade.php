@@ -56,6 +56,16 @@
                 @endif
                 @if (Auth()->user()->role === 'admin')
                     <li class="submenu">
+                        <a href="javascript:void(0);"><img src="{{ asset('assets/img/icons/purchase1.svg') }}"
+                                alt="img"><span>Purchase</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="{{ route('admin.purchase.index') }}">Purchase List</a></li>
+                            <li><a href="{{ route('admin.purchase.create') }}">Add Purchase</a></li>
+                        </ul>
+                    </li>
+                @endif
+                @if (Auth()->user()->role === 'admin')
+                    <li class="submenu">
 
                         <a href="javascript:void(0);"><img src="{{ asset('assets/img/icons/users1.svg') }}"
                                 alt="img"><span> User</span> <span class="menu-arrow"></span></a>

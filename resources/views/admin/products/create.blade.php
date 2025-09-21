@@ -9,7 +9,7 @@
                 <div class="page-title">
                     <h4>Product Add</h4>
                     <h6>Create new product</h6>
-                    
+
                 </div>
             </div>
 
@@ -75,9 +75,9 @@
 
                             <div class="col-lg-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Price</label>
-                                    <input type="text" class="form-control" name="price" placeholder="Enter Price">
-                                    <x-form-error name="price" />
+                                    <label>Markup Percentage</label>
+                                    <input type="text" class="form-control" name="markup_percent" placeholder="Enter Price Markup Percentage">
+                                    <x-form-error name="markup_percent" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-12">

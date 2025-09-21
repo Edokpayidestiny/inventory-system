@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\Admin\AdjustmentHistoryController;
 use App\Http\Controllers\Admin\SalesManagementController;
+use App\Http\Controllers\Admin\PurchaseController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -51,4 +52,10 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/sales/filter', [SalesManagementController::class, 'filter'])->name('admin.sales.filter');
     Route::get('/sales/summary', [SalesManagementController::class, 'summary'])->name('admin.sales.summary');
 
+    // Purchase management routes
+    Route::get('/purchase', [PurchaseController::class, 'index'])->name('admin.purchase.index');
+    Route::get('/purchase/create', [PurchaseController::class, 'create'])->name('admin.purchase.create');
+    Route::post('/purchase/store', [PurchaseController::class, 'store'])->name('admin.purchase.store');
+    Route::get('/purchase/edit/{purchase}', [PurchaseController::class, 'edit'])->name('admin.purchase.edit');
+    Route::delete('/purchase/delete/{purchase}', [PurchaseController::class, 'destroy'])->name('admin.purchase.delete');
 });

@@ -38,7 +38,7 @@ class ProductController extends Controller
         $product->name = $validated['name'];
         $product->description = $validated['description'];
         $product->category_id = $validated['category_id'];
-        $product->price = $validated['price'];
+        $product->markup_percent = $validated['markup_percent'];
         $product->qty = $validated['qty'];
         $product->unit = $validated['unit'];
         $product->brand = $validated['brand'];
@@ -84,7 +84,7 @@ class ProductController extends Controller
         $product->name = $validated['name'];
         $product->description = $validated['description'];
         $product->category_id = $validated['category_id'];
-        $product->price = $validated['price'];
+        $product->markup_percent = $validated['markup_percent'];
         $product->qty = $validated['qty'];
         $product->unit = $validated['unit'];
         $product->brand = $validated['brand'];
