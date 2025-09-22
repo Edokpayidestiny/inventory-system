@@ -43,9 +43,13 @@ class PurchaseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Purchase $purchase)
     {
-        //
+        $data = [
+            'title' => 'Purchase Details',
+            'purchase' => $purchase->load('purchaseItems.product'),
+        ];
+        return view('admin.purchase.show', $data);
     }
 
     /**
@@ -61,13 +65,6 @@ class PurchaseController extends Controller
         return view('admin.purchase.edit', $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

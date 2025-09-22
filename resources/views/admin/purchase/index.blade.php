@@ -33,25 +33,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="wordset">
-                            <ul>
-                                <li>
-                                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf">
-                                        <img src="{{ asset('assets/img/icons/pdf.svg') }}" alt="img">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel">
-                                        <img src="{{ asset('assets/img/icons/excel.svg') }}" alt="img">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="print">
-                                        <img src="{{ asset('assets/img/icons/printer.svg') }}" alt="img">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                    
                     </div>
 
 
@@ -88,7 +70,7 @@
                                         <td>NGN{{ $purchase->total_amount }}</td>
                                         <td><span class="badges bg-lightgreen">Paid</span></td>
                                         <td>
-                                            <a class="me-3" href="">
+                                            <a class="me-3" href="{{ route('admin.purchase.show', $purchase->uuid) }}">
                                                 <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                             </a>
                                             <a class="me-3"

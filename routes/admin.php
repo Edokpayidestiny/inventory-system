@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\Admin\AdjustmentHistoryController;
 use App\Http\Controllers\Admin\SalesManagementController;
 use App\Http\Controllers\Admin\PurchaseController;
+use App\Http\Controllers\Admin\PriceController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -58,4 +59,13 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/purchase/store', [PurchaseController::class, 'store'])->name('admin.purchase.store');
     Route::get('/purchase/edit/{purchase}', [PurchaseController::class, 'edit'])->name('admin.purchase.edit');
     Route::delete('/purchase/delete/{purchase}', [PurchaseController::class, 'destroy'])->name('admin.purchase.delete');
+    Route::get('/purchase/show/{purchase}', [PurchaseController::class, 'show'])->name('admin.purchase.show');
+
+    // Pricing Management routes
+    Route::get('/pricing/index', [PriceController::class, 'index'])->name('admin.pricing.index');
+    Route::patch('/pricing/update/{product}', [PriceController::class, 'update'])->name('admin.pricing.update');
+    Route::get('/pricing/history/{product}', [PriceController::class, 'show'])->name('admin.pricing.history.show');
+    Route::get('/pricing/history', [PriceController::class, 'history'])->name('admin.pricing.history');
+
+
 });
