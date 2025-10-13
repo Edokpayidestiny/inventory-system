@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\DB;
 class SalesSummary extends Component
 {
     public $chartData = [];
-    public $range = 'daily'; // Options: daily, weekly, monthly, yearly
+    public $range = 'daily';
     public $topProducts = [];
     public $totalSalesAmount = 0;
     public $totalItemsSold = 0;
     public $salesTransactions = 0;
     public $averageSaleValue = 0;
+    public $totalProfit = 0;
+    public $totalLoss = 0;
 
     public function mount()
     {
@@ -24,14 +26,13 @@ class SalesSummary extends Component
 
     public function updatedRange()
     {
-        // Auto-refresh when range changes
         $this->loadData();
     }
 
     public function loadData()
     {
+        // CHART DATA
         if ($this->range === 'daily') {
-            // Get sales for the current month, grouped by day (SQLite version)
             $sales = Sale::selectRaw("strftime('%d', created_at) as day, SUM(total_amount) as total")
                 ->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])
                 ->groupBy('day')
@@ -49,7 +50,6 @@ class SalesSummary extends Component
                     ->toArray(),
             ];
         } elseif ($this->range === 'monthly') {
-            // Monthly totals for the current year (SQLite version)
             $sales = Sale::selectRaw("strftime('%m', created_at) as month, SUM(total_amount) as total")
                 ->whereRaw("strftime('%Y', created_at) = ?", [now()->year])
                 ->groupBy('month')
@@ -62,8 +62,7 @@ class SalesSummary extends Component
             ];
         }
 
-
-        // Decide the date window for top products
+        //  DATE RANGE
         [$start, $end] = match ($this->range) {
             'daily'   => [Carbon::today()->startOfDay(), Carbon::today()->endOfDay()],
             'weekly'  => [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()],
@@ -72,7 +71,7 @@ class SalesSummary extends Component
             default   => [Carbon::today()->startOfDay(), Carbon::today()->endOfDay()],
         };
 
-        // Top products in the selected window
+        //  TOP PRODUCTS
         $this->topProducts = DB::table('sale_items as si')
             ->join('sales as s', 's.id', '=', 'si.sale_id')
             ->join('products as p', 'p.id', '=', 'si.product_id')
@@ -89,11 +88,9 @@ class SalesSummary extends Component
             ->get()
             ->toArray();
 
-        // Update summary stats
+        //  SUMMARY STATS
         $salesQuery = Sale::whereBetween('created_at', [$start, $end]);
-
         $this->totalSalesAmount = $salesQuery->sum('total_amount');
-
         $saleIds = $salesQuery->pluck('id');
 
         $this->totalItemsSold = DB::table('sale_items')
@@ -101,14 +98,30 @@ class SalesSummary extends Component
             ->sum('qty');
 
         $this->salesTransactions = $salesQuery->count();
-
-        // Average sale value (avoid division by zero)
         $this->averageSaleValue = $this->salesTransactions > 0
             ? $this->totalSalesAmount / $this->salesTransactions
             : 0;
 
+        //   PROFIT & LOSS CALCULATION
+        $profitData = DB::table('sale_items as si')
+            ->join('sales as s', 's.id', '=', 'si.sale_id')
+            ->join('products as p', 'p.id', '=', 'si.product_id')
+            ->whereBetween('s.created_at', [$start, $end])
+            ->selectRaw('
+                SUM((p.price - p.cost_price) * si.qty) as total_profit,
+                SUM(
+                    CASE WHEN p.price < p.cost_price
+                        THEN (p.cost_price - p.price) * si.qty
+                        ELSE 0
+                    END
+                ) as total_loss
+            ')
+            ->first();
 
-        // Fire browser event for JS chart refresh
+        $this->totalProfit = $profitData->total_profit ?? 0;
+        $this->totalLoss = $profitData->total_loss ?? 0;
+
+        //  CHART REFRESH
         $this->dispatch('refreshChart', $this->chartData);
     }
 

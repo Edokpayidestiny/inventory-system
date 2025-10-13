@@ -76,6 +76,34 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-12 d-flex">
+                <div class="dash-count">
+                    <div class="dash-counts">
+                        <h4>₦{{ number_format($totalProfit, 2) }}</h4>
+                        <h5>Total Profit</h5>
+                    </div>
+                    <div class="dash-imgs">
+                        <span style="font-size:40px; font-weight:bold;">₦</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-6 col-12 d-flex">
+                <div class="dash-count das1">
+                    <div class="dash-counts">
+                        <h4>₦{{ number_format($totalLoss, 2) }}</h4>
+                        <h5>Total Losses</h5>
+                    </div>
+                    <div class="dash-imgs">
+                        <span style="font-size:40px; font-weight:bold;">₦</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 
         <div class="row">
             <!-- Sales Trend Chart -->

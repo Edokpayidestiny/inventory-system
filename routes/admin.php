@@ -2,13 +2,14 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\Admin\AdjustmentHistoryController;
 use App\Http\Controllers\Admin\SalesManagementController;
 use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\PriceController;
+use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -67,5 +68,13 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/pricing/history/{product}', [PriceController::class, 'show'])->name('admin.pricing.history.show');
     Route::get('/pricing/history', [PriceController::class, 'history'])->name('admin.pricing.history');
 
+    // Users
+
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::patch('/users/update/{user}', [UserController::class, 'update'])->name('admin.users.update');
+
+    // profile
+    Route::get('profile/index', [ProfileController::class, 'index'])->name('admin.profile.index');
 
 });

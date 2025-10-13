@@ -15,9 +15,6 @@
                 <div class="row">
                     @livewire('pos-products')
 
-
-
-
                 </div> <!-- End row -->
             </div> <!-- End content -->
         </div> <!-- End page-wrapper -->

@@ -33,7 +33,6 @@
 </div>
 <div class="form-login">
 <div class="alreadyuser">
-<h4><a href="" class="hover-a">Forgot Password?</a></h4>
 </div>
 </div>
 <div class="form-login">

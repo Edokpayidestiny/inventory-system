@@ -24,7 +24,7 @@ class AuthenticationSessionController extends Controller
             if($user->role == 'admin') {
                 return redirect()->route('admin.dashboard')->with('success', 'Welcome Admin');
             } elseif($user->role == 'staff') {
-                return redirect()->route('staff.dashboard')->with('success', 'Welcome Staff');
+                return redirect()->route('staff.sales.index')->with('success', 'Welcome Staff');
             }
         } else {
             throw ValidationException::withMessages([
