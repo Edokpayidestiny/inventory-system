@@ -65,7 +65,7 @@
                 @endif
                  @if (Auth()->user()->role === 'admin')
                     <li class="submenu">
-                        <a href="javascript:void(0);"><img src="{{ asset('assets/img/icons/purchase1.svg') }}"
+                        <a href="javascript:void(0);"><img src="{{ asset('assets/img/icons/expense1.svg') }}"
                                 alt="img"><span>Pricing</span> <span class="menu-arrow"></span></a>
                         <ul>
                             <li><a href="{{ route('admin.pricing.index') }}">Adjust Pricing</a></li>
@@ -85,7 +85,7 @@
                 @endif
 
                 <li class="submenu">
-                    <a href="javascript:void(0);"><img src="{{ asset('assets/img/icons/places.svg') }}"
+                    <a href="javascript:void(0);"><img src="{{ asset('assets/img/icons/users1.svg') }}"
                             alt="img"><span> Profile</span> <span class="menu-arrow"></span></a>
                     @if(Auth()->user()->role === 'admin')
                     <ul>

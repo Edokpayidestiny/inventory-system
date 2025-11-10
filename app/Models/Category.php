@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\AdjustmentHistory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class Category extends Model
 {
+
+    use HasFactory;
     protected $guarded = [];
+
 
     protected static function boot()
     {

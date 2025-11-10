@@ -19,7 +19,7 @@
                         <div class="profile-top">
                             <div class="profile-content">
                                 <div class="profile-contentimg">
-                                    <img src="{{ asset('assets/img/customer/customer5.jpg') }}" alt="img"
+                                    <img src="{{ asset('assets/img/profiles/images.jpg') }}" alt="img"
                                         id="blah">
                                     <div class="profileupload">
                                         <input type="file" id="imgInp">
